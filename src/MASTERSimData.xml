@@ -1,0 +1,1289 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE Simulation_Data[
+<!ELEMENT Simulation_Data (LOCI,
+
+InbreedingDepression,
+
+Dioecious,Reproduction_Rate,
+Offspring_Distribution,
+SeedGerminationRate,
+Pollen_Rate,Mortality_Rate,
+SeedMortalityRate,
+Selfing_Rate,RandomMating,
+Agamospermy,
+Dispersal_Distribution,
+DispersalDirection,
+EasyPollen,
+PollenDirection,
+Compatibility,
+NewRegion,
+SummaryRegions,
+MakeMaps,
+Immigration,
+Number_Generations,Number_Runs,
+DataInterval,
+SeedCollection,
+Initial_Population,CreateAllFounders,FoundersF)>
+<!ELEMENT LOCI (locus)*>
+<!ATTLIST LOCI number_loci CDATA #REQUIRED>
+<!ATTLIST LOCI auto_alleles_per_locus CDATA #IMPLIED>
+<!ATTLIST LOCI number_automatic_loci CDATA #IMPLIED>
+
+
+<!-- 29 June 2014 InbreedingDepression-->
+<!ELEMENT InbreedingDepression (IBD_ReproductionEffect,IBD_MortalityEffect)>
+<!ATTLIST InbreedingDepression
+    use (true|false) #REQUIRED
+    depressionloci CDATA #REQUIRED
+    depression_reproduction (true|false) #REQUIRED
+    depression_mortality (true|false) #REQUIRED>
+<!ELEMENT IBD_ReproductionEffect EMPTY>
+<!ATTLIST IBD_ReproductionEffect
+    x CDATA #REQUIRED
+    y CDATA #REQUIRED>
+
+<!ELEMENT IBD_MortalityEffect EMPTY>
+<!ATTLIST IBD_MortalityEffect 
+    x CDATA #REQUIRED
+    y CDATA #REQUIRED
+    f CDATA #REQUIRED>
+    
+ <!-- 29 June 2014 InbreedingDepression-->   
+<!ELEMENT Dioecious EMPTY>
+<!ATTLIST  Dioecious value (true|false) #REQUIRED>
+<!ELEMENT locus  (dpdpoint)*>
+<!ATTLIST locus
+    action (compatibility|dispersal|fitness|inbreeding) #IMPLIED>
+    
+<!ELEMENT dpdpoint EMPTY>
+<!ATTLIST dpdpoint
+    x CDATA #REQUIRED
+    y CDATA #REQUIRED>
+<!ELEMENT functionpoint EMPTY>
+<!ATTLIST functionpoint
+    x CDATA #REQUIRED
+    y CDATA #REQUIRED>
+<!ELEMENT Reproduction_Rate (functionpoint)*>
+
+
+
+<!ELEMENT Offspring_Distribution EMPTY>
+<!ATTLIST Offspring_Distribution 
+    method (round|bracket|poisson) #REQUIRED>
+    
+<!ELEMENT SeedGerminationRate (functionpoint)*>
+
+
+
+<!ELEMENT SeedMortalityRate (functionpoint)*>
+    
+    
+<!ELEMENT Pollen_Rate (functionpoint)*>
+<!ELEMENT Mortality_Rate (functionpoint)*>
+<!ELEMENT Selfing_Rate EMPTY>
+<!ATTLIST Selfing_Rate value CDATA #REQUIRED>
+<!ELEMENT RandomMating EMPTY>
+<!ATTLIST RandomMating value CDATA #REQUIRED>
+
+<!ELEMENT Agamospermy EMPTY>
+<!ATTLIST Agamospermy
+    use (true|false) #REQUIRED
+    method (all|facultative) #REQUIRED
+    probability CDATA #REQUIRED>
+<!--
+<!ELEMENT Fruit_Distance EMPTY>
+<!ATTLIST Fruit_Distance value CDATA #REQUIRED>
+-->
+<!ELEMENT Dispersal_Distribution (functionpoint)*>
+<!ELEMENT DispersalDirection (functionpoint)*>
+<!ATTLIST DispersalDirection
+    use (true|false) #REQUIRED>
+    
+<!ELEMENT EasyPollen (pollenframe)*>
+<!ELEMENT pollenframe EMPTY>
+<!ATTLIST pollenframe
+      low CDATA #REQUIRED
+      high CDATA #REQUIRED
+      prob CDATA #REQUIRED>
+
+<!ELEMENT PollenDirection (functionpoint)*>
+<!ATTLIST PollenDirection
+    use (true|false) #REQUIRED>
+    
+<!ELEMENT Compatibility EMPTY>
+<!ATTLIST Compatibility
+    value CDATA #REQUIRED
+    compatibility_fraction CDATA #REQUIRED
+    locus CDATA #REQUIRED>
+    
+    <!--22june14 revert to earlier Region
+<!ELEMENT Region (Rectangle|SparseRectangle|ConvexPolygon|DynamicRect)*>
+-->
+<!ELEMENT Region (Rectangle|ConvexPolygon)*>
+<!ATTLIST Region
+    XL CDATA #REQUIRED
+    YL CDATA #REQUIRED
+    XH CDATA #REQUIRED
+    YH CDATA #REQUIRED>
+    
+<!ELEMENT NewRegion (NewRectangle)*>
+    <!ATTLIST NewRegion
+    XL CDATA #REQUIRED
+    YL CDATA #REQUIRED
+    XH CDATA #REQUIRED
+    YH CDATA #REQUIRED>
+  
+    <!--  
+<!ELEMENT regionpoint EMPTY>
+<!ATTLIST regionpoint
+    a CDATA #REQUIRED
+    b CDATA #REQUIRED>
+    -->
+    
+ <!ELEMENT NewRectangle (ClustersPerYear*,SitesPerCluster*,SiteLifetime*)>
+  <!ATTLIST NewRectangle
+    XL CDATA #REQUIRED
+    YL CDATA #REQUIRED
+    XH CDATA #REQUIRED
+    YH CDATA #REQUIRED
+    type (PLAIN|RANDOM|DYNAMIC) #REQUIRED
+    density CDATA #IMPLIED
+    name CDATA #IMPLIED>
+    
+<!ELEMENT Rectangle EMPTY>
+<!ATTLIST Rectangle
+    XL CDATA #REQUIRED
+    YL CDATA #REQUIRED
+    XH CDATA #REQUIRED
+    YH CDATA #REQUIRED
+    name CDATA #IMPLIED>
+   
+
+
+<!ELEMENT ConvexPolygon (Vertex)*>
+<!ELEMENT Vertex EMPTY>
+<!ATTLIST Vertex
+    x CDATA #REQUIRED
+    y CDATA #REQUIRED>
+    
+  
+  <!ELEMENT ClustersPerYear (functionpoint)*>
+ <!ATTLIST ClustersPerYear
+   distribution (poisson|uniform|constant|cdf) #IMPLIED
+   value CDATA #IMPLIED
+   mean CDATA #IMPLIED
+   min CDATA #IMPLIED
+   max CDATA #IMPLIED>
+   
+   <!ELEMENT SitesPerCluster (functionpoint)*>
+  <!ATTLIST SitesPerCluster
+   distribution (poisson|uniform|constant|cdf) #IMPLIED
+   value CDATA #IMPLIED
+   mean CDATA #IMPLIED
+   min CDATA #IMPLIED
+   max CDATA #IMPLIED>
+  <!ELEMENT SiteLifetime (functionpoint)*>
+  <!ATTLIST SiteLifetime
+   distribution (poisson|uniform|constant|cdf) #IMPLIED
+   value CDATA #IMPLIED
+   mean CDATA #IMPLIED
+   min CDATA #IMPLIED
+   max CDATA #IMPLIED>
+  
+   
+   
+
+ <!ELEMENT SummaryRegions (Region)*>
+ 
+
+
+<!ELEMENT MakeMaps (Vector)>
+<!ATTLIST MakeMaps 
+use (true|false) #REQUIRED
+pixelsPerSite CDATA #IMPLIED
+>
+
+ <!ELEMENT Immigration (Vector)*>
+ <!ATTLIST Immigration use (true|false) #REQUIRED
+rate CDATA #REQUIRED
+pfemale CDATA #REQUIRED
+>
+
+ <!ELEMENT Vector EMPTY>
+ <!ATTLIST Vector 
+ name CDATA #REQUIRED
+ length CDATA #REQUIRED
+ values CDATA #REQUIRED>
+<!ELEMENT Number_Generations EMPTY>
+<!ATTLIST Number_Generations value CDATA #REQUIRED>
+<!ELEMENT Number_Runs EMPTY>
+<!ATTLIST Number_Runs value CDATA #REQUIRED>
+<!ELEMENT DataInterval EMPTY>
+<!ATTLIST DataInterval value CDATA #REQUIRED>
+
+<!ELEMENT SeedCollection EMPTY>
+<!ATTLIST SeedCollection
+    use (true|false) #REQUIRED
+    subregions_only (true|false) #REQUIRED
+    seed_dump_file_name CDATA #REQUIRED
+    last_r CDATA #REQUIRED>
+    
+<!ELEMENT Plant EMPTY>
+<!ATTLIST Plant
+    age CDATA #REQUIRED
+    X CDATA #REQUIRED
+    Y CDATA #REQUIRED
+    femaleP (true|false) #REQUIRED>
+<!ELEMENT age EMPTY>
+<!ATTLIST age value CDATA #REQUIRED>
+<!ELEMENT femaleP EMPTY>
+<!ATTLIST femaleP value (true|false) #REQUIRED>
+
+<!ELEMENT location EMPTY>
+<!ATTLIST location
+    X CDATA #REQUIRED
+    Y CDATA #REQUIRED>
+    <!ELEMENT RandomPlantList EMPTY>
+<!ATTLIST RandomPlantList
+    number CDATA #REQUIRED
+    numberfemale  CDATA #REQUIRED
+    XL  CDATA #REQUIRED
+    YL CDATA #REQUIRED
+    XH CDATA #REQUIRED
+    YH CDATA #REQUIRED
+    probfemale  CDATA #REQUIRED
+    agelow  CDATA #REQUIRED
+    agehi  CDATA #REQUIRED>
+<!ELEMENT Initial_Population (Plant|RandomPlantList)*>
+<!ELEMENT CreateAllFounders EMPTY>
+<!ATTLIST CreateAllFounders value (true|false) #REQUIRED>
+<!ELEMENT FoundersF EMPTY>
+<!ATTLIST FoundersF value CDATA #REQUIRED>
+]>
+
+<!--
+Use this file (or copies of it that you modify) to control the values
+ of the parameters of the model.
+ 
+You need to give the name of such a parameter file on the command line every time you
+run the NEWGARDEN program. 
+
+This file is to work with/test out/document
+
+
+
+X NewGarden version 2.73 (30 June 2014)
+X NewGarden version 2.74 (7 July 2014)
+-> NewGarden version 2.75 (7 Sept 2014)
+NOTE older SimData.xml files may not work with this version of NEWGARDEN.
+and older versions of NewGarden may not work with this format of parameter file.
+
+
+
+It includes  2012 improvements; and 2013 improvements especially 
+1) the revised implementation of a SEEDBANK 
+2) provision for IMMIGRATION from the founding population 
+3) SPARSE Rectangles (that miss a certain fraction of their grid points)
+4) A COMPATIBILITY SYSTEM (Nov 2013)
+5) DynamicRect s in which viable sites appear and diasapper Dec 2013
+6) NewRegion and New Rect now used for describing regions but not for summary regions (which are not dynamic)
+7) Can now specify years in run 0 for which maps are drawn
+8) DisperalDirection and PollenDirection can now be selected at random
+    according to user specified distributions. But you can turn this feature off.
+9( You can request that maps be drawn showing the distribution of viable sites, plants, and seeds
+    during selected years during the first run of the simulation.
+10) 20 May 2014 Now contains a SeedCollection program for post-processing data dumped at the end of
+a regular NewGarden run, and a new XML element in SimData that turns this data dumping on and off.
+11) 8 June 2014 Returned to old version for treating RandomPlantLists where we aggregate all requests
+    for founders in a given rectangle (Different ages or sexes, perhaps) and get locations for
+    them all at once so that there are never two at one location.
+12) NewRectangles now have an optional attribute called name. This can be used to
+   document their purpose. Eventually RandomPlantLists can be placed in named NewRectangles
+   so that we can find locations for founders even in RANDOM or DYNAMIC rectangles
+13) Can now specify pixelsPerSite that gets handed on to Image when making maps. Potentially useful
+for Emma's project about making a movie. TODO: allow a color scheme with darker greens for older plants
+
+14) 7 July 2014 Inbreeding Depression is now implemented (changes to Plant, SimData, SimDataReader,Model) We calculate the actual excess homozygosity (relative to FoundersF)
+and use this to (optionally)  alter ReproductionRate by a user defined factor or alter mortality calculating it according to a user defined function of excesshomozygosity and age.
+
+7July2014 bug fix in SeedCollection subscript out of bounds in NearestNeighbor section because RandomInteger may have equaled collation.size().
+
+15) Sept 2014 Changed the seed collection program to also calculate pathlengths, and do it
+    by subrectangles if the SUmmary region isn't just 1 rectangle.
+    
+This new version also makes some older SimData parameter files unacceptable.
+For example, now we only allow EasyPollen as a way of specifying pollen distribution;
+the two older methods are no longer supported
+
+OPTIONS FOR STATISTICS AND REDUCTION OF MEMORY REQUIREMENTS
+
+1. You can use the "skipstats" commandline option. Then the entire population
+is dumped to a text file for later processing by the ReadData program.
+
+2. You can use the "smallstats" commandline option. This causes the program to store
+intermediate statistics in a file on disk, read them in at the end and produce output
+as usual.
+
+3. Don't use either of those options and the program will work the way it always has.
+
+The option of using "skipstats" and dumping data to an output file can result in a huge
+output file. A run of 80 generations with 80 replicates produced a dump file of 560MB!!
+
+
+-->
+
+<Simulation_Data>
+    <!-- LOCI
+    Specify the number of loci to simulate,
+    the number of alleles at each locus and 
+    the frequency of alleles at each locus
+
+    The attributes auto_alleles_per_locus and
+    number_automatic_loci are optional and provide a shorthand
+    for generating multiple loci with the same number of alleles and
+    same allele frequencies.
+
+    Otherwise, simply include one <locus>...</locus> element
+    for each locus to be simulated.
+
+    THIS IS A CHANGE FROM EARLIER VERSIONS:
+    The required attribute number_loci should equal the number of <locus>...</locus>
+    elements used to specify loci; it DOES NOW include the number of
+    automatically generated loci.
+
+    The <dpdpoint>...</dpdpoint> elements in the <locus>...</locus> elements
+    each create an allele at that locus. The x attribute is the frequence of
+    the allele and the y attribute is the label (name) of the allele.
+
+    The LOCI element below specifies a simulation with 7 loci. One locus 
+    has 3 alleles with frequencies 0.25,0.25,0.5; one has 2 alleles with 
+    frequencies 0.05 and 0.95. The remaining 5 loci each have 2 equally 
+    probable alleles.
+    <LOCI number_loci="1" auto_alleles_per_locus="2" number_automatic_loci="1">
+    
+    locus has an attribute called 'action' that is ignored by the program (currently dec 2013)
+    but serves as documentation and can later be used as a check on the consistency
+    or the parameter specifications
+    
+    FEB 2014 number_loci is now the total number of loci auto generated and individually
+    specified.
+    
+    June 29 2014 Introduce InbreedingDepression and arrange for SimData to contain the necessary variable,
+    to output them when writing XML, and for SimDataReader to parse the XML elements
+    and initialize them for SimData.
+   -->
+    <LOCI number_loci="14" number_automatic_loci="10" auto_alleles_per_locus="20">
+        <!-- the first locus listed explicitly is the compatibility locus and
+        stored as locus number 0 in the array of loci if there are no auto loci
+        it is stored at number_automatic_loci if there are auto generated loci-->
+        <!-- the thing described here is locus number 10 
+        The action attribute is optional but possibly useful for documenting what the
+        file intends. It may be checked in the future to ensure that the 
+        compatibility locus is labeled
+        with this action attribute value.
+        
+        Starting 29 June 2014 we'll also allow alleles to be considered to calculate homozygosity
+        and use this to reduce reproduction or increase mortality.-->
+        <locus action="compatibility">
+            <dpdpoint x="0.25" y="0"/>
+            <dpdpoint x="0.25" y="1"/>
+            <dpdpoint x="0.25" y="2"/>
+            <dpdpoint x="0.25" y="3"/>
+        </locus>
+        <!-- the next 3 loci are to be used in estimating inbreeding
+        they are loci number 11-13-->
+           <locus action="inbreeding">
+            <dpdpoint x="0.25" y="0"/>
+            <dpdpoint x="0.25" y="1"/>
+            <dpdpoint x="0.25" y="2"/>
+            <dpdpoint x="0.25" y="3"/>
+        </locus>  
+        
+        <locus action="inbreeding">
+            <dpdpoint x="0.25" y="0"/>
+            <dpdpoint x="0.25" y="1"/>
+            <dpdpoint x="0.25" y="2"/>
+            <dpdpoint x="0.25" y="3"/>
+        </locus>  
+        <locus action="inbreeding">
+            <dpdpoint x="0.25" y="0"/>
+            <dpdpoint x="0.25" y="1"/>
+            <dpdpoint x="0.25" y="2"/>
+            <dpdpoint x="0.25" y="3"/>
+        </locus>  
+        
+    </LOCI>
+    
+    
+    <!-- InbreedingDepression 30 June 2014
+    
+    This element controls how the homozygosity of a plant in excess of that
+    expected for the Founders alters the age-dependent reproduction rate
+    and/or age dependent mortality rate.
+    
+    use  is true/false and turns on the operation of this stuff
+    depressionloci is a list of loci to be used in computing 
+        the homozygosity of a plant and the expected homozygosity of founders
+        You can only refer to loci that exist (not bigger then number_loci-1
+    depression_reproduction  and
+    depression_mortality are true/false
+    and determine whether excess homozygosity is used to alter r and/or m
+    
+    
+    -->
+    <InbreedingDepression 
+    use="true"
+    depressionloci="10,11,12,13"
+    depression_reproduction="true"
+    depression_mortality="true"
+    >
+    <!-- ReproductionEffect is a multiplier giving the factor to reduce the
+    age-dependent reproduction rate by based on excess homozygosity
+        So when excess homozygosity is 0, the multiplier would
+        typically be 1, and these values might well decrease with increasing
+        excess homozygosity
+       
+        -->
+    <IBD_ReproductionEffect x="0,0.5,1" y="1,0.8,0.5"/>
+    
+   
+
+<!-- the first variable is excesshomozygosity, and second variable is age
+    for x=0 this should just be the normal age dependent mortality rate
+     x="0,1,4,7,10"
+     y="0,1"
+     f="0,0.2,0.5,0.5,1,0.3,0.5,0.6,0.6,1"
+    
+    -->
+    
+  <!--  <IBD_MortalityEffect x="0,1" y="0,1"  f="0,0.5,0.75,1"/>-->
+ 
+    <IBD_MortalityEffect y="0,1,4,7,10"
+     x="0,1"
+     f="0,0.2,0.5,0.5,1,0.3,0.5,0.6,0.6,1"/>
+    
+    
+</InbreedingDepression>
+
+    <!-- Dioecious
+    Is the population di- or mono-?
+    You can set the required attribute to be "true" or "false"
+    -->
+    <Dioecious value="false"/>
+    
+    <!-- Reproduction_Rate
+     Potential offspring generated per breeding cycle
+     as a function of age of female parent.
+
+    Actually this gives the expected number of offspring that are generated
+    and have a chance to be established
+
+    The way in which this data is used in the simulation is user-specified. You can
+     use the the parameters below to specify the exact number of potential offspring 
+    each parent generates or you can use the paramters to specify the mean number generated. 
+    In this case the number of offspring per parent of will be chosen at random from a 
+    Poisson distribution.
+
+     In the functionpoint elements below the attribute "x" is the age and the attribute "y" is
+    the number of offspring. These function point elements represent points on the graph giving the
+     age dependence of offspring number vs. age of parent. The value of y at an x not explicitly specified
+     is determined by linear interpolation.
+
+      The specific example below describes high reproduction at early ages with reproduction declining to
+      0 at age 8 and higher.
+    -->
+    <Reproduction_Rate>
+        <functionpoint x="0" y="4"/>
+        <functionpoint x="1" y="4"/>
+        <functionpoint x="2" y="4"/>
+        <functionpoint x="7" y="1"/>
+        <functionpoint x="8" y="0"/>
+        <functionpoint x="10" y="0"/>
+        <functionpoint x="11" y="0"/>
+        <functionpoint x="20" y="0"/>
+    </Reproduction_Rate>
+
+    <!--Offspring_Distribution
+    This controls how the"fruit production vs age distribution" is implemented.
+
+    This element has one attribute called method. You can assign it one of the values
+    "bracket","poisson",and "round". If you don't specify one of these the default
+    behavior is "round"
+
+    "poisson" results in the simulation picking a possion random number with
+    the specified mean when deciding how many offspring to generate for each parent.
+
+    "round" simply rounds the specified number down to the nearest whole number.
+
+    "bracket" chooses between rounding down and rounding up to the nearest
+    whole numbers so that the average is that specified by the age distribution.
+    -->
+    <Offspring_Distribution method="bracket"/>
+
+<!--SeedProductionRate controls the age-dependent contribution
+made each round of breeding to the seedbank
+
+This distribution determines the number of seeds we try to generate
+to donate to the bank. Failed pollination resutls in a smaller
+number of seeds donated, as does having seed's randomly
+selected location fall outside the Region.
+
+It works that same wasy as Reproduction_Rate
+
+Just as with Reproduction_Rate you can also choose the distribution
+of the number produced.
+
+If you set this function to be always 0 the program
+won't waste much time, This is essentially how one turns off
+the seedbank option
+
+TO eliminate the seedbank make all seeds germinate immediately
+    by doing this:
+
+<SeedGerminationRate>
+    
+    <functionpoint x="0" y="1.0"/>
+    <functionpoint x="1" y="0"/>
+</SeedGerminationRate>
+-->
+<SeedGerminationRate>
+    
+    <functionpoint x="0" y="0.9"/>
+    <functionpoint x="2" y="0.4"/>
+    <functionpoint x="8" y="0.1"/>
+</SeedGerminationRate>
+
+
+    <!-- Pollen_Rate
+    The relative chance of donating pollen as a function of age.
+
+    The <functionpoint>...</functionpoint> elements specify
+    pollen rate (y) at different ages (x).
+
+    These points are interpolated linearly to get values for other (intermediate) ages.
+
+    In this example the relative chance of donating pollen is independent of age.
+    -->
+    <Pollen_Rate>
+        <functionpoint x="0" y="1"/>
+        <functionpoint x="1" y="1"/>
+        <functionpoint x="2" y="1"/>
+        <functionpoint x="7" y="1"/>
+        <functionpoint x="8" y="1"/>
+        <functionpoint x="10" y="1"/>
+        <functionpoint x="11" y="1"/>
+        <functionpoint x="20" y="1"/>
+    </Pollen_Rate>
+    
+    <!-- Mortality_Rate
+    Chance of dying during previous "year" as a function of age
+
+    More techincally, this is the age dependent chance of dying 
+    immediately after the  indicated generation (= population age)
+    bout of reproduction  
+  
+    The <functionpoint>...</functionpoint> elements specify
+    points on the graph of mortality rate vs. age. (x is age, y is 
+    mortality rate)
+    
+    These points are interpolated linearly to get values for ages not
+    exlicitly specified.
+
+    In the example below there's no mortaility in the first years and
+    everything is dead by age 10.
+    -->
+    <Mortality_Rate>
+        <functionpoint x="0"  y="0"/>
+        <functionpoint x="1"  y="0.2"/>
+        <functionpoint x="4"  y="0.5"/>
+        <functionpoint x="7"  y="0.5"/>
+        <functionpoint x="10" y="1"/>
+        <functionpoint x="11" y="1"/>
+        <functionpoint x="20" y="1"/>
+    </Mortality_Rate>
+    
+    <!--SeedMortalityRate controls death of seeds
+    in the seedbank in an age dependent way.
+    
+    It works just like Mortality_Rate
+    
+    TO eliminate the seedbank, do this
+     <SeedMortalityRate>
+        <functionpoint x="0"  y="1"/>
+        <functionpoint x="1"  y="1"/>
+    </SeedMortalityRate>
+    
+    -->
+    <SeedMortalityRate>
+        <functionpoint x="0"  y="0"/>
+        <functionpoint x="1"  y="0.2"/>
+        <functionpoint x="4"  y="0.5"/>
+        <functionpoint x="7"  y="0.5"/>
+        <functionpoint x="10" y="1"/>
+    </SeedMortalityRate>
+    <!-- Selfing_Rate
+    selfing rate for monoecious population
+    
+    There is one required attribute named value that 
+    should be assign a decimal between 0.0 and 1.0 inclusive.
+    -->
+    <Selfing_Rate value="0.0"/>
+    
+    <!-- RandomMating
+    What to do if selfing=0
+
+    Do we allow some self crosses even if selfing is 0 
+    so that mating is random (true) or exclude them (false)?
+    
+    True random mating implies that all possible matings are equally likely 
+    and this includes self-matings. If the parameter selfing is set to 0 
+    (or any other specific value) the matings simulated by the program will not 
+    be truely random since selfing occurs at a fixed, user-specified rate.
+
+    The required attribute called value is either "true" or "false"
+    
+    This determines whether  random mating (including selfings) is 
+    simulated (if "true") or not (if "false") in the situations
+    where Selfing_Rate is specified as "0.0". 
+    -->
+    <RandomMating value="false"/>
+    
+    
+    <!-- 18 May 2014
+
+    <Agamospermy ../> lets us specify whether and how to include it in
+    the reproduction part of the model
+    
+    attribute use is eitehr true - we do allow agamospermy
+    or false - we don't and program runs as before
+   
+   attribute method is either all or facultative
+   
+   with method="all" a certain fraction of all reproductions are by apomixis
+   with method="facultative" a certain fracntion of pollinations that
+   fail due to lack if pollen source are by apomixis
+   
+   attribute probability os a float between 0 and 1 and gives that
+   chance, on a give try, that reproduction by apomixis proceeds. Otherwise
+   no potential offspring are produced.
+   -->
+    <Agamospermy use="true" method="facultative" probability="0.4"/>
+    <!-- Dispersal_Distribution
+    describes the probability that an offspring moves to occupy a grid
+    point at distance d from maternal parent.
+
+    The first point in this element needs to be
+
+    <functionpoint x="0" y="0"/>
+
+    so that only non-negative distances are selected.
+
+    The distribution of disperal distances is given
+    as a Cumulative Distribution so adding the point
+
+    <functionpoint x="12" y="0.5"/>
+
+    says that the probability that the randomly chosen dispersal distance is
+    <= 12 is 50%. This means that with probability 50% one of the values 0,1,....,11,12
+    will occur. 
+
+    To make the chance of dispersing exactly
+    12 units equal to 0.1, the next entry should be
+
+    <functionpoint x="13" y="0.6"/>
+
+    Since then the chance that the distance is between 12 and 13 is 0.6-0.5 =0.1
+
+    Our distances are always whole numbers and WE ROUND DOWN HERE
+
+    If the maximum distance possible is to be D the last functionpoint should be
+
+    <functionpoint x="D+1" y="1.0"/>
+
+    since then some number between 0 and D is always selected
+    -->
+    <Dispersal_Distribution>
+        <functionpoint x="0" y="0"/>
+        <functionpoint x="1" y="0.05"/>
+        <functionpoint x="2" y="0.1"/>
+        <functionpoint x="3" y="0.49"/>
+        <functionpoint x="6" y="1.0"/>
+    </Dispersal_Distribution>
+   
+   <!-- DispersalDirection is a CDF that lets us choose a random direction
+   MARCH 6 2014
+   This gives a cumulative distribution of angles (measured in degrees
+ from 0=due north to 360 moving clockwise) it is used for picking a random direction
+ in which an offspring disperses from its parent. The site closest to this direction
+ and at the distance determinded by Dispersal_Distrbution is the one slected.
+ 
+  If you set the attribute use to "false" then the program calculates dispersal
+  by the original method in which each site at the specified distance is equally likely
+   
+   -->
+    <DispersalDirection use="true">
+        <functionpoint x="0" y="0"/>
+        <functionpoint x="360" y="1"/>
+    </DispersalDirection>
+    <!--EasyPollen 
+
+   For each mating the realtive chances that a plant is a pollen donor
+depend on the age of the plant and its distance from the maternal parent.
+The age dependence is given by the Pollen_Rate element.
+
+EasyPollen describes the distance dependence.
+   It  provides a means for specifying the chance that a pollen
+    source is at different distances from a female parent.
+    
+    
+    Different distance frames (or bands or rings)  are specified with <pollenframe/> elements.
+    These elements give the upper and lower limits of the distances for
+    each frame  and the probability that the distance to a pollen source 
+    lies between the values low and high specified in the <pollenframe/>
+    statement.
+    
+    In this example when a pollen source is selected for any mating there will be a 
+    50% chance that it is at a distance between 0 and 2 from a maternal
+    parent and 5% that it is at a 
+    distance of 7 or more; the remaining time the distance will be between
+    3 and 6 inclusive.
+
+    Technically, you want to ensure that the probabilities are non negative and add up to 1.
+    -->
+    <EasyPollen>
+        <pollenframe low="0" high ="2" prob="0.5"/>
+        <pollenframe low="3" high ="6" prob="0.45"/>
+        <pollenframe low="7" high ="Inf" prob="0.05"/>
+    </EasyPollen>
+    
+    
+    <!-- MARCH 2014
+    PollenDirection gives the probability, based on direction (angle) FROM maternal partent,
+    that a potential pollen source is included in the lottery to contribute pollen
+    
+    if the attribute use is "false" pollenator selection ignores direction and is
+    carried out by the old (original) method
+    
+    Shown here is a mildly strong west wind plants upwind 270 degrees from parent
+    are sure to be conisdered as pollen sources, those downwind (90 degrees) have a 25% chance.
+    
+    -->
+    <PollenDirection use="true">
+        <functionpoint x="0" y="0.5"/>
+        <functionpoint x="90" y="0.25"/>
+        <functionpoint x="180" y="0.5"/>
+        <functionpoint x="270" y="1"/>
+        <functionpoint x="360" y="0.5"/>
+    </PollenDirection>
+    <!-- Compatibility uses one locus as a compatibiity system. Fertilization is achived as usual
+    except that compatibility_fraction of the time we don't generate a potential offspring if
+    the pollen has a locus 1 allele that is one of the two in the maternal parent.
+    This "failure" counts as one of the potential founders generated in a given year for a particular maternal plant.
+    
+    So compatibility_fraction is the "strength" of the compatibility system.
+    The sysem prevents polination/fertiliation compatibility_faction of the time
+    that this is called for by the genotypes involved.
+    
+    Setting value to false turns off consideration of the system and compatibility_fraction is ignored and has no effect.
+    If value is true and compatibility_fraction is 0, again there is no effect but the model spends time
+    checking genotypes.
+    
+    The attribute locus gives the number of the locus to use as the compatibility locus.
+    If there's no aut-generated loci, the first locus specified in the LOCI element
+    is number 0.
+    
+    If N auto loci are specified, then N is the number of the locus specified by
+    the first locus element in the LOCI element.
+    Dec 14 2013 
+    
+    31 Jan 2014 now that the action attribute for Locus is available
+    we could/should check that locus of the number specified here
+    is actually action.equals("compatibility");
+    -->
+    
+    <Compatibility value="true" compatibility_fraction="1.0" locus="10"/>
+   
+
+    <!--Region
+    The region is specified by giving the coordinates of lower left
+    and upper right vertices of a rectangle. If you only want everything
+    to take place in one big rectangle, you can give the Region statement
+    without any Rectangle subelements.
+
+    <Region XL="0" XH="70" YH="70" YL="0"/>
+    makes everything take place in (0,0) to (70,70) meaning the only viable
+grid points (x,y) satisfy 0<=x<=70 and 0<=y<=0.
+
+    The attributes of Region stand for the coordinates
+    of the lower left and upper right vertices of a rectangle:
+    (XLow,YLow) (XHigh,YHigh).
+
+    If you want to restrict the action to some part of this rectangle,
+    you can include Rectangle and ConvexPolygon elements inside the
+    Region element.
+
+    Then the region is the UNION of all the rectangles and convex polygons
+    INTERSECTed with the large rectangle specified in the attributes of the
+    Region element.
+    
+    =====================================================================
+    Spares Rects have been removed June 2014
+    and replaced by NewRectangles that are polymorphic.
+    Starting May 2013 we also can specify a SparseRectangle, which is
+    a rectangle from which a certain fraction of the gridpoints have been
+    removed at random. "density" is the fraction of gridpoints remaining.
+    
+    If there's a SparseRectangle in a Region, a different Region is generated
+    at random at the start of each run.
+    
+    We may have conflicts with locations of founders.
+
+    There's a more detailed example of this procedure below under
+    SummaryRegions
+    -->
+    
+    <!-- 30 Dec 2013
+    Dynamic and Spares Rects have been removed June 2014
+    and replaced by NewRectangles that are polymorphic.
+    
+    A DYNAMIC type rectangle is one in which viable sites are created and diassapear
+    during the course of a simulation run. This is to simulate opening of gaps
+    and succession.
+    
+    The dynamics are controled by specifying 3 distributions:
+    ClustersPerYear  - the number of new clusters to generate in a given year
+    SitesPerCluster - the RADIUS of the cluster of new viable sites created s a value of 3
+        makes a cluster of (3+1)^2 sites
+    SiteLifetime - how long newly created viable sites remain viable
+    
+    Each of these distributions can be a 
+    constant - specify a specific value
+    uniform - chosen between two numbers min and max inclusive
+    poisson - specify the mean
+    cdf - a user specifed CDF
+    
+   
+    
+    Here, each year 4 new Clusters of viable sites are introduced
+    The radius of the cluster of sites is chosen froma Posiion distribution with
+    mean 3 and
+    the lifetimes of the sites in the cluster (all the same lifetimes) are chosen
+    for each cluster from the CDF that says there's a 50% chance that the lifeime
+    is less than 3 (less than or equal to 2) and 100% chance that it is less 
+    than or equal to 5.    
+    ==========================================================================        
+                
+    Note that NewRectangle s should not overlap especially if one or
+more of them is type DYNAMIC. 
+    It might make some sense to have Sparse and Dymanic Rects overlap.
+    This is allowed but it isn't clear how it'd work w.r.t. to Founders or
+    even determining whether a site is in the NewRegion?
+    
+    FEB 2014 NewRegion and NewRectangle are now used for describing
+    the region (but not summary regions)
+    
+     NewRegion has a bounding rectangle
+     and contains a list of NewRectangle's
+     that can be one of 3 types: PLAIN,RANDOM,DYNAMIC
+       PLAIN is a regular old rectangle or the sort we've always used
+       no additional attributes are needed for PLAIN
+       
+       RANDOM is a rectangle that changes with every run by having
+       random points selected as belonging to it according to a user
+       specified probability 
+        You specify the attribute density, as in density="0.5 " to say what
+        fraction of the sites in the bounding rectangle are viable
+        The memory required to store a RANDOM NewRectangle is independent
+        of the density of viable points it contains
+       
+       RANDOM is implemented as a bitmap indicating which sites are viable.
+       So bigger RANDOM's require more memory to represent
+       
+       
+       TO DO: We need an option to pre-iterate the update() method at the 
+    start of a run so that the distribution of viable sites is near equilibrium.
+       
+       DYNAMIC changes every year and a the start every run 
+       viable points of various lifespans are added in clusters
+       of random sizes and locations and removed as their lifespan
+       ends.       
+       Here you specify THREE additional distirbutions
+       ClustersPerYear
+       SitesPerCLuster - the radius of a cluster >=0
+       SiteLifetime
+       
+       Each of these can be a constant with a value
+       OR poisson with a given mean
+       or uniform with given min and max
+       or given by a user-specifed cumulative distribution
+       
+       THe memory it takes to store a DYNAMIC NewRectangle depends on the
+       number of viable points it contains.
+       
+       DYNAMIC is implemented as a sorted List (or Tree) of viable sites. 
+The memory required depends on how many viable sites there are, not on the 
+size of the rectangle itself.
+       
+    7 June 2014 there's now an OPTIONAL attribute for each NewRectangle called
+    name. This can be used to document the role of the NewRectangle.
+    Eventually it can also be used to say where a RandomPlantList                               
+    Should be placed.
+    -->
+    <NewRegion XL="0" XH="150" YH="100" YL="0">
+        <NewRectangle XL="0" YL="0" XH="50" YH="100" type="PLAIN" name="WestPlain"/>
+       
+        <NewRectangle type="DYNAMIC" XL="51" YL="0" XH="100" YH="100" name="dynamiccenter">
+            <ClustersPerYear distribution="constant" value ="2"/>
+            <SitesPerCluster distribution="poisson" mean="3"/>
+            <SiteLifetime distribution="cdf">
+                <functionpoint x="0" y="0"/>
+                <functionpoint x="3" y="0.5"/>
+                <functionpoint x="6" y="1.0"/>       
+            </SiteLifetime>
+        </NewRectangle>
+        
+        <NewRectangle XL="101" YL="0" XH="150" YH="100" type="RANDOM" density="0.5" name="randomright"/>
+    </NewRegion>
+
+    <!--SummaryRegions
+    In the <SummaryRegions>...</SummaryRegions> element you can specify
+    multiple Regions that will cause the program to print all the usual
+    summary statistics and data for that part of the population that occurs in 
+    the Region.
+    
+    In the output the summaries are provided for subregions in the
+    order in which they are listed here.
+    
+    Using the program Fst you can read a dump of data from a run of
+    the model and calculate F statistics or arbitrary collections of subregions
+    that are defined by the <SummaryRegions> element. Note that to do this
+    the subregions can't overlap.
+   -->
+    <SummaryRegions>
+        <Region XL="0" XH="100" YH="100" YL="0">
+            <Rectangle XL="0" YL="0" XH="50" YH="100"/>
+        </Region>
+        <Region XL="0" XH="100" YH="100" YL="0">
+             <Rectangle XL="51" YL="0" XH="100" YH="100"/>
+           
+        </Region>
+    </SummaryRegions>
+   <!--
+     <SummaryRegions/>
+     -->
+     
+     <!--MakeMaps
+     can be turned on and off by setting the attribute use to "true" or "false"
+     
+     The Vector inside MakeMaps has values in  a comma separated list of values 
+which are the years for which,
+     during run number 0 (the first run) maps are produced. the Vector attribute length
+     must specify how many numbers are in values
+     
+     Eventually will will let users specify pixelspersite that controls
+     how large a box is used to represent each (viable, occupied) site
+     
+     pixelsPerSite is passed on to Image a NewRegion that is P pixels wide
+     genarates a png that is pixelsPerSite*P pixels wide.
+     
+     If you use the SeedCollection program and MakeMaps is true, SeedCollection
+     witll make a map of the parental plants sampled during the first replicate 
+of the first sampling strategy applied to the first run.
+     -->
+    <MakeMaps use="true" pixelsPerSite="3">
+        
+        <Vector name="maps" length="3" values="0,2,4"/>
+    </MakeMaps>
+ <!--Immigration  16 MAY 2013
+    use=true says execute the immigration loop. Otherwise all 
+            the other parts of this element will be ignored.
+    rate="12.3" gives the average number of immigrants to generate
+            per year. This gives the mean of a Poisson random number
+            of immigrants       
+    The three Vectors give a discrete density function on the integer-coordinate
+    points in a rectangle.
+    The locations for immigrants are selected according to this distribution.
+    the vector with name "f" gives the realtive likelihoods of all the lattice points
+    and the probabilities of others are interpolated linearly. "f" values are in a
+    row first format from low y values to higher y values
+
+CHECK THIS, BUT THIS IS WHAT I THINK THIS MEANS
+f(0,0)=1
+f(50,0)=2
+f(100,0)=3
+f(0,50)=4
+...
+
+HOWEVER IT LOOKS LIKE SimDataReader DOES
+f(0,0)=1
+f(0,50)=2
+f(0,100)=3
+f(50,0)=4
+...
+
+IE COLUMN-FIRST FORMAT.
+-->
+    <Immigration use="true" rate="10" pfemale="0.55">
+        <Vector name="x" length="3" values="0,50,100"/>
+        <Vector name="y" length="3" values="0,50,100"/>
+        <Vector name="f" length="9" values="1,2,3,4,5,6,7,8,9"/>
+    </Immigration>
+    
+    
+       <!-- Number_Generations (age)
+    How many generations to run out the model
+    Since the 0th generation is counted, if you set this value to n
+    the last generation listed in the output will be number n-1
+    -->
+    <Number_Generations value="5"/>
+    
+    <!-- Number_Runs
+    How many replicate simulations to run for purposes
+    of computing statistics
+    -->
+    <Number_Runs value="5"/>
+    
+    <!-- DataInterval 
+    determined how often we collect and summarize data.
+    
+    Originally this was done every "year" and this behaviour can
+    now be obtained by setting
+    <DataInterval value="1"/>
+    
+    To get data collected every $n$ years, use
+    
+    <DataInterval value="n"/>
+    
+    The summary stats from
+    
+    years 0,n,2n,3n,...., for this many reports: (NumberGenerations-1)/n 
+    
+    apprear in the output.
+    
+    This should help reduce the memory requirements of the program
+    though, with really big populations, it probably doesn't matter too much as the
+    memory needed to store the population will exceed that needed to accumulate
+    the statistics.
+    
+    To not waste calculations you probably want Number_Generations-1 to be a multiple
+    of DataInterval. (With DataInterval =1 the program would print stats for years
+    0,1,2,...Number_Generations-1)
+    
+    Example:
+    
+    Number_Generations=3 and DataInterval=2 prints out years 0 and 2
+    
+    Number_Generations= 7 and DataInterval=3 prints out years 0 3 6
+    Number_Generations= 101 and DataInterval=10 prints out years 0 10,20...100
+    -->
+    <DataInterval value="2"/>
+    
+    
+    <!-- SeedCollection lets us ask for a .csv dump of all the seeds
+    procuded by female parents that live (optionally in just summary sub-regions) 
+    at the end of the last year of the simulation.
+    
+     We conduct an extra round of reproduction, using an increased r value
+     and then dump all the seeds to a .csv file 
+     
+    if use=" false" the SeedCollection process is skipped and the program 
+    performs as before
+    
+    if use="true" then SeedCollection is conducted at the end of eac run of the simulatio
+    and after the specifed number of generations have been produced.
+    
+    if subregions_only="true" only maternal parents in user specified SummaryRegions
+    are considered, otherwise all plants are considered as potential maternal parents
+    
+    From each plant that can serve as a female we try to generate last_r potential offspring (seeds)
+    THere's no variation or age dependence in this reproduction effort since we're now modeling
+    collecting seeds rather than determining how many can establish/
+    
+    THe desired number of offspring per maternal plant may not be achieved due tp
+    a compatibility system or failed pollination.
+    
+    All the seeds  produced are written as .csv (dump format) to the file name in the
+    seed_dump_file_name attribute.
+    
+    All the maternal plants are written to a file with the same name put prefixed with "parental-"
+    
+    The option subregions_only is intended to reduce the .csv file sizes
+    by optionally only including parental plants (and their seeds) that lie in one of the SummaryRegions.
+    THere's currently no reason that this should be false since the SeedCollection program
+    only works in summary regions.
+    
+    These dumps will require post-processing to implement a seed collection strategy
+    and analyse the genetics of the resulting samples, producing summary stats over
+    all runs of the experiment (and perhaps over resampling of seeds?)
+    -->
+    <SeedCollection
+use="true"
+subregions_only="true"
+seed_dump_file_name="seedcollection.csv"
+last_r="20"
+/>
+    
+    <!-- DataMethod To be implemented
+    indicates whether to use the standard Statistics module or
+    BigStats which does the same thing but write intermediate data
+    to a file on disk, thus making more memory available for
+    other parts of the program.
+    
+    <DataMethod ="Statistics"/>
+    <DataMethod = "BigStats"/>
+    -->
+    
+    <!-- Initial_Population
+    This element lets you specify the age, location, and sex of
+    the founders of a simulated population.
+
+    Include one <Plant/> element for each founder.
+
+    At the start of each run of the simulation the genotypes
+    for plants at the specified location are selected using the
+    allele frequencies specified in the <LOCI></LOCI> element and
+    the F value specified in <FoundersF/> described below.
+
+    For each founder the attributes of the Plant element specify the 
+    age (age attribute)  at the start of the simulation,
+    the grid point occupied (X,Y) and the sex (the femaleP attribute 
+    can be true or false indicating whether the founder is
+    to be female or male). Note that sex only has an effect
+    if the simulated population has been specified as dioeceous.
+    
+    You can also ask that, at the start of each run, the program generate
+    a RANDOM list of founders. Currently you can ask that the locations
+    of the random founders be selected uniformly in a Rectangle. Future
+    versions will allow specifying that the random founders appear in  non-uniform
+    distributions such as randomly located clusters
+    
+    For these random founders you can specify how many are female or the
+    probability that each one independently is female.
+    
+    If numberfemales is >= this controls the number of females that
+    will be generated (and you'd better have asked numberfemales<number)
+    
+    If numberfemales <0 then probfemale applies and gives the prob for a coin flip
+    that determines each founder's sex.
+    
+    You can also ask that the ages of the founders be chosen uniformly
+    at random from some interval of ages from agelow to agehi INCLUSIVE(!??!)
+    
+    If you want you can have multiple RandomPlantList elements that
+    request plants in the exact same rectangle. This would let you specify
+    age-sex structure in a rectangle, and vary those parameters in different
+    rectangles. BUT some of the founders these lists generated might have locations that 
+    coincide and some, therefore, might be excluded.
+    
+    You can request random founders in a rectangle that lies in a SparseRect or
+    DynamicRect but then it may not be possible to establish all the founders requested.
+    Currently (Dec 2013) the program tries uniformly randomly distributed locations
+    and establishes a founder if its location is viable at the start of the run.
+    (DynamicRects might not have many viable sites?) Otherwise it discards the
+    potential Founder.
+    
+    In the FUTURE: RPL's live inside non-overlapping Rects/SparesRects/DynamicRects
+    and each of these provides a random list of viable sites for the founders
+    
+    
+    
+    Recall that ages of founders are implemented with negative date of birth.
+    To make a founder age=10 at the start we give it dob=-10. Then its age at the start is
+    age=0- (-10)
+    --> 
+    <!--21 Jan 2012
+    We don't currently pre-generate a seedbank because the original thought
+    was to simulate introducing a completely new popuation
+    Eventually we probably want to modify the function model.makeInitialPopulation()
+    to pre-generate a seed bank as well as produce founders; this would be good
+    for simulation of a newly created preserve
+    
+    This would be the place to specify parameters describing the
+    founding seed bank
+    
+    24 MAY 2013 FINALLY, if the Region you've described has SparseRectangle's in it, so that
+    the region changes randomly at the start of each run, some of the founders you've specified
+    here may fall outside the current run's region and so be disgarded.
+    
+    2 FEB 2014 Currently you should only put a RandomPlantList in a PLAIN NewRectangle
+    we don't yet have a method implemented to put ranom founders in other types of NewRectangle
+    and indeed, this might be impossible to do if you request more founders than there are viable sites
+    
+    7 June 2014 You're only assured that founders requested in a RPL will be created
+    if
+    1) The rectangle you've requested them in is contained inside the collection of
+        PLAIN NewRectangles of the main NewRegion for the run.
+    2) You've requested fewer founders than there are points in the Rectangle you've
+        used.
+        
+    If you ask for founders in RANDOM NewRectangles, the program gives one try
+    at finding the required locations and, if it fails, it gives up on creating
+    those founders and prints a message to the command line (but NOT output file)
+    
+    If you request two RPL's in overlapping but different rectangles
+    you may not get all the founders generated as founders from the two RPL's
+    may occupy the same site. The program will print a warning if this happens.
+    
+    -->
+    <Initial_Population>
+        
+        
+        <Plant age="0" X="12" Y="12" femaleP ="true"/>
+        <Plant age="0" X="15" Y="15" femaleP ="false"/> 
+        
+        <!-- these founders are forced into DYNAMIC rectangle making their sites viable-->
+        <Plant age="0" X="60" Y="55" femaleP ="false"/> 
+        <Plant age="0" X="60" Y="57" femaleP ="false"/> 
+        <Plant age="0" X="62" Y="55" femaleP ="false"/> 
+        
+        <!-- THIS RPL is placed in a PLAIN rectangle-->
+        <!-- WE CREATE FOUNDERS IN THIS RECTANGLE OF TWO AGES-->
+        <RandomPlantList number="10" numberfemale="-1" probfemale="0.5" XL="0"
+        XH="50" YL="0" YH="100" agelow="0" agehi="0"/>
+         <RandomPlantList number="10" numberfemale="-1" probfemale="0.5" XL="0"
+        XH="50" YL="0" YH="100" agelow="10" agehi="20"/>
+        
+        <!-- THIS RPL is placed in a RANDOM rectangle as best we can-->
+        <RandomPlantList number="10" numberfemale="-1" probfemale="0.5" XL="51"
+        XH="100" YL="0" YH="100" agelow="0" agehi="0"/>
+         
+         <!--<RandomPlantList number="10" numberfemale="10" probfemale="0.5" XL="0"
+        XH="100" YL="0" YH="100" agelow="5" agehi="5"/>
+        -->
+        
+    </Initial_Population>
+    
+    <!--  Keep trying to create founds from a RandomPlant List
+    if there's a SparseRectangle in the Region?
+    
+    THIS SHOULD BE SET TO false for now as we haven't decided on and implemented
+    a scheme to establish requested founders in a SparseRect where there might not 
+    even be ebough viable sites t0 accomodate the requested founders
+    
+    Plus, we need to decide what to do about a DynamicRect. If we try to put
+    founders in a Region that includes a DynamicRect, should we create viable sites
+    for those founders?
+    
+    7 JUNE 2014
+    THIS IS STILL NOT IMPLEMENTED.
+    NewRectangles will have a method for returning N random viable points
+    and we should be able to use this to establish requested founders
+    once we implement a requirement that each RandomPlantList's Rectangle
+    lie in an identifiable NewRectangle of the NewRegion.
+    
+    
+    -->
+    <CreateAllFounders value="false"/>
+
+    <!-- FoundersF
+    specifes the overall inbreeding coefficient F for the population
+    from which the founders are selected at random.
+
+    The one attribute, value, is required and should be assigned
+    a value that is meaningful as an inbreeding coefficient. (You should
+    only specify an F value between "0.0" and "1.0".)
+
+    The parameter specifies the excess (above Hardy Weinberg) of homozygousity.
+    -->
+    <FoundersF value="0.0"/>
+</Simulation_Data>

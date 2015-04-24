@@ -1,0 +1,5 @@
+ps -ax
+pwd
+ls -l *
+ps -a 
+ls -l *.*

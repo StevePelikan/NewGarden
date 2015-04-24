@@ -1,0 +1,28 @@
+ %!PS
+ 0.5 setgray
+ 0.1 setlinewidth
+0 0 newpath  moveto
+10 0 rlineto
+0 10 rlineto
+-10 0 rlineto
+closepath
+fill
+
+stroke
+
+/dx{ 10} def
+/dy{ 12} def
+/box{
+     newpath  moveto
+dx 0 rlineto
+0 dy rlineto
+-1 dx mul 0 rlineto
+closepath
+setgray
+fill
+}def
+
+0.7 60 60 box
+showpage
+
+%Letter         pagesize                 612 x 792
